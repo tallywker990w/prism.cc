@@ -1,6 +1,8 @@
 --giant lua script
 --have fun
 print("loaded")
+game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("-r6")
+task.wait(3)
 
 -- just grass giant by quirky anime boy#5506
 
