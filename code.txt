@@ -196,7 +196,7 @@ MiscTab:CreateToggle({
 local ServerTab = Window:CreateTab("Server", 4483362458)
 
 ServerTab:CreateButton({
-   Name = "Potato Mode (AMD Vega 11 Boost)",
+   Name = "Potato Mode (performence)",
    Callback = function()
       for _, v in pairs(game:GetDescendants()) do
          if v:IsA("BasePart") then
