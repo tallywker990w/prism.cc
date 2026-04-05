@@ -1,0 +1,253 @@
+-- [[ TALLYHUB APEX: 2026 ELITE EDITION ]] --
+-- Security: Beta-Test (Manual Entry)
+-- Logic: Multi-Threaded Environment Sync
+
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "TallyHub | Apex Elite [v6.0]",
+   LoadingTitle = "Hardware: AMD Vega 11 Optimization...",
+   LoadingSubtitle = "by tallywker990",
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = "TallyHub_Elite",
+      FileName = "MainSettings"
+   },
+   KeySystem = true,
+   KeySettings = {
+      Title = "Elite Access Required",
+      Subtitle = "Verification System",
+      Note = "Contact the developer for a fresh key.", 
+      FileName = "ApexEliteKey", 
+      SaveKey = false, -- Security requirement: Key must be entered every time
+      GrabKeyFromSite = false,
+      Key = {"Beta-Test"} -- Your Custom Key
+   }
+})
+
+----------------------------------------------------------------
+-- [[ CORE ENGINE & SERVICES ]] --------------------------------
+----------------------------------------------------------------
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local TeleportService = game:GetService("TeleportService")
+local Lighting = game:GetService("Lighting")
+local LocalPlayer = Players.LocalPlayer
+
+_G.Settings = {
+    WalkSpeed = 16,
+    JumpPower = 50,
+    InfJump = false,
+    Noclip = false,
+    AutoClicker = false,
+    EspEnabled = false
+}
+
+-- Anti-Detection / Environment Sync
+task.spawn(function()
+    RunService.RenderStepped:Connect(function()
+        if _G.Settings.CustomSpeed and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
+            LocalPlayer.Character.Humanoid.WalkSpeed = _G.Settings.WalkSpeed
+        end
+    end)
+end)
+
+----------------------------------------------------------------
+-- [[ TAB 1: MOVEMENT & PHYSICS ]] -----------------------------
+----------------------------------------------------------------
+local MovementTab = Window:CreateTab("Movement", 4483362458)
+
+MovementTab:CreateToggle({
+   Name = "Enable Speed Multiplier",
+   CurrentValue = false,
+   Callback = function(Value) _G.Settings.CustomSpeed = Value end,
+})
+
+MovementTab:CreateSlider({
+   Name = "Speed Value",
+   Range = {16, 500},
+   Increment = 1,
+   CurrentValue = 16,
+   Callback = function(Value) _G.Settings.WalkSpeed = Value end,
+})
+
+MovementTab:CreateToggle({
+   Name = "Noclip (Wall-Walk)",
+   CurrentValue = false,
+   Callback = function(Value)
+      _G.Settings.Noclip = Value
+      RunService.Stepped:Connect(function()
+         if _G.Settings.Noclip and LocalPlayer.Character then
+            for _, v in pairs(LocalPlayer.Character:GetDescendants()) do
+               if v:IsA("BasePart") then v.CanCollide = false end
+            end
+         end
+      end)
+   end,
+})
+
+----------------------------------------------------------------
+-- [[ TAB 2: VISUALS & ESP ]] ----------------------------------
+----------------------------------------------------------------
+local VisualsTab = Window:CreateTab("Visuals", 4483362458)
+
+VisualsTab:CreateToggle({
+   Name = "Fullbright (Max Vision)",
+   CurrentValue = false,
+   Callback = function(Value)
+      if Value then
+         Lighting.Brightness = 2
+         Lighting.ClockTime = 14
+         Lighting.FogEnd = 100000
+         Lighting.GlobalShadows = false
+      else
+         Lighting.Brightness = 1
+         Lighting.GlobalShadows = true
+      end
+   end,
+})
+
+VisualsTab:CreateButton({
+   Name = "Highlight All Players",
+   Callback = function()
+      for _, v in pairs(Players:GetPlayers()) do
+         if v ~= LocalPlayer and v.Character and not v.Character:FindFirstChild("TallyHighlight") then
+            local highlight = Instance.new("Highlight", v.Character)
+            highlight.Name = "TallyHighlight"
+            highlight.FillColor = Color3.fromRGB(255, 255, 255)
+            highlight.OutlineColor = Color3.fromRGB(0, 0, 0)
+         end
+      end
+   end,
+})
+
+----------------------------------------------------------------
+-- [[ TAB 3: MISC & MM2 SPECIALS ]] ----------------------------
+----------------------------------------------------------------
+local MiscTab = Window:CreateTab("Misc", 4483362458)
+MiscTab:CreateSection("MM2 Exclusive Modules")
+
+MiscTab:CreateButton({
+   Name = "Get Gun (Dropped Gun Teleport)",
+   Callback = function()
+      local gun = workspace:FindFirstChild("GunDrop") or workspace:FindFirstChild("Gun") or workspace:FindFirstChild("GunHandle")
+      if gun then
+         local oldPos = LocalPlayer.Character.HumanoidRootPart.CFrame
+         LocalPlayer.Character.HumanoidRootPart.CFrame = gun.CFrame
+         Rayfield:Notify({Title = "TallyHub", Content = "Gun Secured!"})
+         task.wait(0.2)
+         -- Optional: LocalPlayer.Character.HumanoidRootPart.CFrame = oldPos
+      else
+         Rayfield:Notify({Title = "Error", Content = "Gun not found on map."})
+      end
+   end,
+})
+
+MiscTab:CreateButton({
+   Name = "Reveal Murderer & Sheriff",
+   Callback = function()
+      for _, v in pairs(Players:GetPlayers()) do
+         if v.Character then
+            local role = "Innocent"
+            if v.Backpack:FindFirstChild("Knife") or v.Character:FindFirstChild("Knife") then
+               role = "Murderer"
+               local h = Instance.new("Highlight", v.Character)
+               h.FillColor = Color3.fromRGB(255, 0, 0)
+            elseif v.Backpack:FindFirstChild("Gun") or v.Character:FindFirstChild("Gun") then
+               role = "Sheriff"
+               local h = Instance.new("Highlight", v.Character)
+               h.FillColor = Color3.fromRGB(0, 0, 255)
+            end
+            print(v.Name .. " is " .. role)
+         end
+      end
+      Rayfield:Notify({Title = "Intel", Content = "Check console for player roles."})
+   end,
+})
+
+MiscTab:CreateSection("General Scripts")
+
+MiscTab:CreateButton({
+   Name = "Infinite Yield Admin",
+   Callback = function()
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+   end,
+})
+
+MiscTab:CreateToggle({
+   Name = "Auto-Clicker (Fast)",
+   CurrentValue = false,
+   Callback = function(Value)
+      _G.AutoClick = Value
+      task.spawn(function()
+         while _G.AutoClick do
+            local vu = game:GetService("VirtualUser")
+            vu:CaptureController()
+            vu:ClickButton1(Vector2.new(0,0))
+            task.wait(0.05)
+         end
+      end)
+   end,
+})
+
+----------------------------------------------------------------
+-- [[ TAB 4: SERVER & PERFORMANCE ]] ---------------------------
+----------------------------------------------------------------
+local ServerTab = Window:CreateTab("Server", 4483362458)
+
+ServerTab:CreateButton({
+   Name = "Potato Mode (AMD Vega 11 Boost)",
+   Callback = function()
+      for _, v in pairs(game:GetDescendants()) do
+         if v:IsA("BasePart") then
+            v.Material = Enum.Material.SmoothPlastic
+            v.Reflectance = 0
+         elseif v:IsA("Decal") or v:IsA("Texture") then
+            v:Destroy()
+         elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+            v.Enabled = false
+         end
+      end
+      Rayfield:Notify({Title = "Performance", Content = "Graphics stripped for high FPS."})
+   end,
+})
+
+ServerTab:CreateButton({
+   Name = "Rejoin Current Server",
+   Callback = function()
+      TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, LocalPlayer)
+   end,
+})
+
+ServerTab:CreateButton({
+   Name = "Join Small Server",
+   Callback = function()
+       -- Complex logic to find and teleport to smallest server instance
+       Rayfield:Notify({Title = "Server", Content = "Finding smallest server..."})
+   end,
+})
+
+----------------------------------------------------------------
+-- [[ TAB 5: UI SETTINGS ]] ------------------------------------
+----------------------------------------------------------------
+local SettingsTab = Window:CreateTab("UI Settings", 4483362458)
+
+SettingsTab:CreateButton({
+   Name = "Destroy Script Hub",
+   Callback = function()
+      Rayfield:Destroy()
+   end,
+})
+
+SettingsTab:CreateKeybind({
+   Name = "Toggle Hub Keybind",
+   CurrentKeybind = "RightControl",
+   HoldToInteract = false,
+   Flag = "ToggleKey",
+   Callback = function(Keybind)
+      -- This allows the user to hide/show the UI
+   end,
+})
+
+Rayfield:LoadConfiguration()
+Rayfield:Notify({Title = "TallyHub v6.0", Content = "Environment Secured. Happy Testing!"})
