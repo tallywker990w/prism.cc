@@ -21,7 +21,7 @@ local Window = Rayfield:CreateWindow({
       FileName = "ApexEliteKey", 
       SaveKey = false, -- Security requirement: Key must be entered every time
       GrabKeyFromSite = false,
-      Key = {"Beta-Test"} -- Your Custom Key
+      Key = {"Beta-Tester"} -- Your Custom Key
    }
 })
 
