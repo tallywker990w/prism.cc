@@ -1,3 +1,5 @@
+
+
 --giant lua script
 --have fun
 print("loaded")
@@ -237,3 +239,5 @@ ti(cons,reset.Event:Connect(function()
 end))
 
 game:GetService("StarterGui"):SetCore("ResetButtonCallback", reset)
+
+game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("Grass Giant made by idk")
