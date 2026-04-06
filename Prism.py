@@ -234,7 +234,7 @@ class PrismApp(ctk.CTk):
             card.pack(fill="x", pady=5)
             ctk.CTkLabel(card, text=n, font=("Arial", 14, "bold")).place(x=15, y=12)
             ctk.CTkLabel(card, text=d, font=("Arial", 11), text_color="#aaa").place(x=15, y=38)
-            ctk.CTkButton(card, text="FIRE", width=80, fg_color=current_theme_color, text_color="black", command=lambda code=c: self.run_lua(code)).place(relx=0.9, rely=0.5, anchor="center")
+            ctk.CTkButton(card, text="Execute", width=80, fg_color=current_theme_color, text_color="black", command=lambda code=c: self.run_lua(code)).place(relx=0.9, rely=0.5, anchor="center")
 
     def show_themes(self):
         self.clear_container()
