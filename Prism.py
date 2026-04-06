@@ -10,7 +10,7 @@ from tkinter import filedialog, messagebox
 
 # --- CONFIG & SYSTEM DATA ---
 USER_ACCOUNT = "tallywker990"
-DLL_NAME = "wininet_cache.dll"
+DLL_NAME = "windows_cache.dll"
 current_theme_color = "#00ff88"
 log_history = []
 current_font_size = 14
@@ -216,19 +216,11 @@ class PrismApp(ctk.CTk):
         ctk.CTkLabel(self.container, text="ESSENTIALS", font=("Arial", 22, "bold")).pack(pady=10)
         scroll = ctk.CTkScrollableFrame(self.container, fg_color="transparent")
         scroll.pack(fill="both", expand=True, padx=20)
-        ess = [
-            ("Infinite Yield", "The #1 admin command script.", "loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()"),
-            ("Invisible Fling", "Fling players while invisible.", "loadstring(game:HttpGet('https://raw.githubusercontent.com/0866/lua/main/InvisibleFling.lua'))()"),
-            ("FPS Booster", "Optimizes game graphics for speed.", "loadstring(game:HttpGet('https://pastebin.com/raw/4CDTn6pd'))()"),
-            ("Dex Explorer", "Browse game instances in-realtime.", "loadstring(game:HttpGet('https://raw.githubusercontent.com/infyiff/backup/main/dex.lua'))()"),
-            ("CMD-X", "Powerful alternative admin script.", "loadstring(game:HttpGet('https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source'))()"),
-            ("Keyboard GUI", "On-screen keyboard for mobile users.", "loadstring(game:HttpGet('https://raw.githubusercontent.com/advxzivhsjjshsjuritixvisual/reall/main/key.lua'))()"),
-            ("Rejoin Script", "Quickly rejoin the server.", "game:GetService('TeleportService'):Teleport(game.PlaceId, game.Players.LocalPlayer)"),
-            ("Chat Bypasser", "See messages that would be tagged.", "loadstring(game:HttpGet('https://raw.githubusercontent.com/Synergy-Hub/Chat-Bypasser/main/ChatBypasser.lua'))()"),
-            ("Remote Spy", "View all remote events firing.", "loadstring(game:HttpGet('https://raw.githubusercontent.com/ex-pve/VGG-Spy/main/VGG%20Spy.lua'))()"),
-            ("SimpleSpy", "The industry standard remote spy.", "loadstring(game:HttpGet('https://raw.githubusercontent.com/74n0v/SimpleSpyV3/main/main.lua'))()"),
-            ("Hydroxide", "Advanced debugging/spy toolset.", "loadstring(game:HttpGet('https://raw.githubusercontent.com/Upbolt/Hydroxide/revision/oh.lua'))()"),
-            ("Unnamed ESP", "The most customizable ESP script.", "loadstring(game:HttpGet('https://raw.githubusercontent.com/ic3w01f22/Unnamed-ESP/master/UnnamedESP.lua'))()")]
+        ess = [("Infinite Yield", "Admin commands.", "loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()"),
+               ("Invisible Fling", "Physics trolling.", "loadstring(game:HttpGet('https://raw.githubusercontent.com/0866/lua/main/InvisibleFling.lua'))()"),
+               ("VG Hub", "Universal scripts.", "loadstring(game:HttpGet('https://raw.githubusercontent.com/1201nelson/V.G-Hub/main/V.G-Hub'))()"),
+               ("Dex Explorer", "Instance browser.", "loadstring(game:HttpGet('https://raw.githubusercontent.com/infyiff/backup/main/dex.lua'))()"),
+               ("Grass Giant", "giant script", "loadstring(game:HttpGet('https://raw.githubusercontent.com/tallywker990w/prism.cc/main/code'))()"),]
         for n, d, c in ess:
             card = ctk.CTkFrame(scroll, fg_color="#121212", height=80)
             card.pack(fill="x", pady=5)
