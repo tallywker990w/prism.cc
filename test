@@ -1,0 +1,2 @@
+print("this is working")
+game:GetService("TextChatService").TextChannels.RBXGeneral.SendAsync("works")
