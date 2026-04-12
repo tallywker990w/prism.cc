@@ -1,1 +1,3 @@
-pip install customtkinter requests pillow
+customtkinter
+requests
+pillow
