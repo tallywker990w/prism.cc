@@ -68,7 +68,7 @@ class PrismApp(ctk.CTk):
         self.discord_btn = ctk.CTkButton(self.sidebar, text="💬 JOIN DISCORD", 
                                         fg_color="#5865f2", hover_color="#4752c4", 
                                         height=40, font=("Arial", 13, "bold"), 
-                                        command=lambda: webbrowser.open("https://discord.gg/2BSmXd8hKY"))
+                                        command=lambda: webbrowser.open("https://discord.gg/xxaVG4eUzU"))
         self.discord_btn.pack(side="bottom", fill="x", padx=30, pady=5)
         
         self.container = ctk.CTkFrame(self, fg_color="#0d0d0d", corner_radius=20)
