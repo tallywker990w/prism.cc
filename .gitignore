@@ -7,9 +7,6 @@ __pycache__/
 *.pyc
 *.spec
 
-# Ignore the heavy AI models
-*.gguf
-
 # Ignore local config/logs
 logs/
 config.json
