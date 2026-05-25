@@ -1,5 +1,3 @@
-#GEMINI IS A DUMBASS 
-
 import customtkinter as ctk
 import ctypes
 import os
@@ -9,7 +7,7 @@ import datetime
 from tkinter import filedialog, messagebox
 
 # --- CONFIG & SYSTEM DATA ---
-USER_ACCOUNT = "tallywker990"
+USER_ACCOUNT = "change-to-your-user"
 DLL_NAME = "windows_cache.dll"
 current_theme_color = "#00ff88"
 log_history = []
@@ -220,7 +218,8 @@ class PrismApp(ctk.CTk):
                ("Invisible Fling", "Physics trolling.", "loadstring(game:HttpGet('https://raw.githubusercontent.com/0866/lua/main/InvisibleFling.lua'))()"),
                ("VG Hub", "Universal scripts.", "loadstring(game:HttpGet('https://raw.githubusercontent.com/1201nelson/V.G-Hub/main/V.G-Hub'))()"),
                ("Dex Explorer", "Instance browser.", "loadstring(game:HttpGet('https://raw.githubusercontent.com/infyiff/backup/main/dex.lua'))()"),
-               ("Grass Giant", "giant script", "loadstring(game:HttpGet('https://raw.githubusercontent.com/tallywker990w/prism.cc/main/code'))()"),]
+               ("Grass Giant", "giant script", "loadstring(game:HttpGet('https://raw.githubusercontent.com/tallywker990w/prism.cc/main/code'))()"),
+              ("Try to make it better DM me or join the server", "", "https://discord.gg/qm7QmhvW8u"]
         for n, d, c in ess:
             card = ctk.CTkFrame(scroll, fg_color="#121212", height=80)
             card.pack(fill="x", pady=5)
