@@ -219,7 +219,7 @@ class PrismApp(ctk.CTk):
                ("VG Hub", "Universal scripts.", "loadstring(game:HttpGet('https://raw.githubusercontent.com/1201nelson/V.G-Hub/main/V.G-Hub'))()"),
                ("Dex Explorer", "Instance browser.", "loadstring(game:HttpGet('https://raw.githubusercontent.com/infyiff/backup/main/dex.lua'))()"),
                ("Grass Giant", "giant script", "loadstring(game:HttpGet('https://raw.githubusercontent.com/tallywker990w/prism.cc/main/code'))()"),
-              ("Try to make it better DM me or join the server", "", "https://discord.gg/qm7QmhvW8u")
+              ("Try to make it better DM me or join the server", "", "https://discord.gg/qm7QmhvW8u")]
         for n, d, c in ess:
             card = ctk.CTkFrame(scroll, fg_color="#121212", height=80)
             card.pack(fill="x", pady=5)
