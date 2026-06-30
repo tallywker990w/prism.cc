@@ -7,6 +7,7 @@ import datetime
 from tkinter import filedialog, messagebox
 
 # --- CONFIG & SYSTEM DATA ---
+CREATOR_ACCOUNT = "tallywker990"
 USER_ACCOUNT = "change-to-your-user"
 DLL_NAME = "windows_cache.dll"
 current_theme_color = "#00ff88"
@@ -59,7 +60,7 @@ class PrismApp(ctk.CTk):
         self.create_nav_btn("SETTINGS", "⚙️", self.show_settings)
         
         # Bottom Section
-        self.dev_tag = ctk.CTkLabel(self.sidebar, text=f"Developed by: {USER_ACCOUNT}", font=("Arial", 12, "bold"), text_color="#444")
+        self.dev_tag = ctk.CTkLabel(self.sidebar, text=f"Developed by: {CREATOR_ACCOUNT}", font=("Arial", 12, "bold"), text_color="#444")
         self.dev_tag.pack(side="bottom", pady=20)
 
         # Discord Button
